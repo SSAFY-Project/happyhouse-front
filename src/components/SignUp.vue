@@ -1,5 +1,5 @@
 <template>
-    <v-form>
+    <v-form  class="mt-15">
         <v-container>
             <v-card>
                 <v-card-title>회원 가입</v-card-title>
@@ -17,6 +17,7 @@
                                 v-model="userPw"
                                 :rules="pwRules"
                                 label="비밀번호"
+                                input=password
                                 required="required"/>
                         </v-col>
 
@@ -44,11 +45,10 @@
                         <v-checkbox label="정류장" value="정류장"/>
                         <v-checkbox label="헬스장" value="헬스장"/>
                     </v-card>
-                    <v-btn class="mr-4" type="submit">회원 가입</v-btn>
+                    <v-btn class="mr-4" type="submit" color="primary">회원 가입</v-btn>
                     <v-btn>초기화</v-btn>
                 </v-card-text>
             </v-card>
-
         </v-container>
     </v-form>
 </template>
