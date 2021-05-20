@@ -1,43 +1,30 @@
 <template>
-  <v-app-bar absolute color="white" elevate-on-scroll scroll-target="#scrolling-techniques-7" id ="navigationbar">
-    <v-app-bar-nav-icon></v-app-bar-nav-icon>
-    <v-toolbar-title>HappyHouse</v-toolbar-title>
-    <v-spacer />
-    <router-link to ="/">홈</router-link> |
-    <router-link to ="/map">지도</router-link> |
-    <router-link to ="/search">검색</router-link> |
-    <router-link to ="/news">뉴스</router-link> |
-    <router-link to ="/more">추가</router-link> |
-    <v-spacer />
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-    <router-link to ="/signin">
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
-    </router-link>
+  <v-app-bar app flat>
+    <v-avatar class="hidden-sm-and-down" color="grey darken-1 shrink" size="32" />
+    
+    <v-tabs centered class="ml-n9" color="grey darken-1">
+      <v-tab>
+        <router-link to ="/">HOME</router-link> 
+      </v-tab>
+      <v-tab>
+        <router-link to ="/map">MAP</router-link>
+      </v-tab>
+      <v-tab>
+        <router-link to ="/search">SEARCH</router-link>
+      </v-tab>
+      <v-tab>
+        <router-link to ="/news">NEWS</router-link>
+      </v-tab>
+      <v-tab>
+        <router-link to ="/more">MORE</router-link>
+      </v-tab> 
+    </v-tabs>
+
+  <v-avatar class="hidden-sm-and-down" color="grey darken-1 shrink" size="32" />
   </v-app-bar>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      items: [
-      { title: '로그인' },
-      { title: '회원가입' },
-    ],
-    }
-  },
-}
+export default {}
 </script>
 
-<style>
-#navigationbar{
-  height: 100%;
-}
-</style>
