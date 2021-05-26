@@ -126,7 +126,7 @@ export default {
           userEmail: this.userEmail,
           userPwd: this.userPwd,
           userAddr: this.userAddr,
-          userName: this.userName,
+          userNickName: this.userName,
           userTel: this.userTel,
           userRole: "ROLE_USER",
         })

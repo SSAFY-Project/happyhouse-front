@@ -13,7 +13,7 @@
         </v-list-item-content>
       </v-list-item>
       <v-list dense nav>
-        <v-list-item link>
+        <v-list-item router-link to="/manager">
           <v-list-item-icon>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-icon>

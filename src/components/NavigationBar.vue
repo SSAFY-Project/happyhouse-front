@@ -20,7 +20,9 @@
     <router-link to="/mypage">
       <v-btn v-if="this.$store.state.userInfo !== null">My Page</v-btn>
     </router-link>
-    <v-btn v-if="this.$store.state.userInfo !== null" v-on:click="out">Sign Out</v-btn>
+    <v-btn v-if="this.$store.state.userInfo !== null" v-on:click="out"
+      >Sign Out</v-btn
+    >
   </v-app-bar>
 </template>
 
@@ -45,11 +47,10 @@ export default {
   methods: {
     ...mapActions(["logout"]),
     out() {
-      this.logout()
-      .then((res) => {
+      this.logout().then((res) => {
         alert(res);
-      })
-    }
-  }
+      });
+    },
+  },
 };
 </script>

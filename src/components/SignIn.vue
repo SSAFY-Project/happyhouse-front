@@ -53,13 +53,13 @@ export default {
     ...mapActions(["login"]),
     submit() {
       this.login({ username: this.userId, password: this.userPw })
-      .then((res) => {
-        alert(res);
-        this.$router.push('/');
-      })
-      .catch((err) => {
-        alert(err);
-      });
+        .then((res) => {
+          alert(res);
+          this.$router.push("/");
+        })
+        .catch((err) => {
+          alert(err);
+        });
     },
   },
 };
