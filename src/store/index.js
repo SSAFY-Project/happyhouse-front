@@ -10,6 +10,38 @@ export default new Vuex.Store({
     userInfo: null,
     isLogin: false,
     isLoginError: false,
+    allUser: [
+      {
+        id: "woongseob",
+        name: "웅섭",
+        date: "21-05-01",
+        role: "관리자"
+      },
+      {
+        id: "donggil",
+        name: "동길",
+        date: "21-05-02",
+        role: "관리자"
+      },
+      {
+        id: "soojin",
+        name: "수진",
+        date: "21-05-03",
+        role: "관리자"
+      },
+      {
+        id: "seongmin",
+        name: "성민",
+        date: "21-05-04",
+        role: "관리자"
+      },
+      {
+        id: "chanho",
+        name: "찬호",
+        date: "21-05-05",
+        role: "사용자"
+      },
+    ],
   },
   mutations: {
     loginSuccess(state, payload) {
@@ -38,6 +70,9 @@ export default new Vuex.Store({
     newgetter(state) {
       return state.newsmodule.state.newsList;
     },
+    /*allUser(state) {
+      return state.allUser;
+    }*/
   },
   actions: {
     // 로그인
