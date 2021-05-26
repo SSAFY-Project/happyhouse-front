@@ -9,86 +9,121 @@
             <button class="btn">지도검색</button>
           </router-link>
         </v-container>
-        <v-container class="detailSearch" v-if="detailOption">
-          <v-expansion-panels>
-            <v-expansion-panel>
-              <v-expansion-panel-header> HashTag </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-container>
-                  <v-row>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="대출 지원"
-                        value="대출 지원"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="주차 가능"
-                        value="주차 가능"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="역세권"
-                        value="역세권"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="공기 좋음"
-                        value="공기 좋음"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="펜트하우스"
-                        value="펜트하우스"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="옵션 1"
-                        value="옵션 1"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="옵션 2"
-                        value="옵션 2"
-                        v-model="interests"
-                      />
-                    </v-col>
-                    <v-col cols="2">
-                      <v-checkbox
-                        label="옵션 3"
-                        value="옵션 3"
-                        v-model="interests"
-                      />
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+        <v-container style="background-color: white" v-if="detailOption">
+          <v-row>
+            <!--필터 검색-->
+            <v-col class="py-3" md="3">
+              <p class="py-3" style="border-bottom: 1px solid gray">
+                {{ detailListTitle[0] }}
+              </p>
+              <v-btn-toggle tile color="deep-purple accent-2" group>
+                <v-btn value="apart" @click="searchBy = '아파트'"> 아파트 </v-btn>
+                <v-btn value="area" @click="searchBy = '지역(동)'"> 지역(동) </v-btn>
+              </v-btn-toggle>
+            </v-col>
+            <v-col md="3">
+              <p class="py-3" style="border-bottom: 1px solid gray">
+                {{ detailListTitle[1] }}
+              </p>
+              <v-text-field
+                label="최소"
+                outlined
+                placeholder="최소"
+                v-model="price[0]"
+              ></v-text-field>
+              ~
+              <v-text-field
+                label="최대"
+                v-model="price[1]"
+                outlined
+              ></v-text-field>
+              <b-field>
+                <b-slider
+                  rounded
+                  v-model="price"
+                  type="is-success"
+                  :min="0"
+                  :max="9999"
+                  :step="100"
+                />
+              </b-field>
+            </v-col>
+            <v-col>
+              <p class="py-3" style="border-bottom: 1px solid gray">
+                {{ detailListTitle[2] }}
+              </p>
+              <v-checkbox
+                label="대출 지원"
+                value="대출 지원"
+                dense
+                v-model="interests"
+              />
+              <v-checkbox
+                label="주차 가능"
+                value="주차 가능"
+                dense
+                v-model="interests"
+              />
+              <v-checkbox
+                label="관리비 포함"
+                value="관리비 포함"
+                dense
+                v-model="interests"
+              />
+              <v-checkbox
+                label="도보 5분"
+                value="도보 5분"
+                dense
+                v-model="interests"
+              />
+            </v-col>
+            <v-col class="py-3" md="3">
+              <p class="py-3" style="border-bottom: 1px solid gray">
+                {{ detailListTitle[3] }}
+              </p>
+              <v-btn-toggle tile color="deep-purple accent-2" group>
+                <v-btn @click="priceSort; sortBy='가격'"> 가격 </v-btn>
+                <v-btn @click="bulidSort; sortBy='건축년도'"> 건축년도 </v-btn>
+                <v-btn @click="reviewSort; sortBy='평점'"> 평점 </v-btn>
+                <v-btn @click="inquirySort; sortBy='조회'"> 조회 </v-btn>
+              </v-btn-toggle>
+            </v-col>
+          </v-row>
           <v-chip
-            class="ma-2"
-            close
-            color="green"
-            text-color="white"
-            v-for="(item, idx) in interests"
-            :key="idx"
-            @click:close="interests.splice(idx, 1)"
-          >
-            # {{ item }}
-          </v-chip>
+                class="ma-2"
+                color="orange"
+                text-color="white"
+                @click:close="searchBy=null"
+              >
+                # {{ searchBy }}
+              </v-chip>
+              <v-chip
+                class="ma-2"
+                color="green"
+                text-color="white"
+              >
+                # {{ price[0] }} ~ {{price[1]}} 만원
+              </v-chip>
+          <v-chip
+                class="ma-2"
+                close
+                color="blue"
+                text-color="white"
+                v-for="(item, idx) in interests"
+                :key="idx"
+                @click:close="interests.splice(idx, 1)"
+              >
+                # {{ item }}
+              </v-chip>
+              <v-chip
+                class="ma-2"
+                color="purple"
+                text-color="white"
+              >
+                # {{ sortBy }}
+              </v-chip>
         </v-container>
+
         <v-container class="searchInput" align-center>
           <v-autocomplete auto-select-first filled solo />
         </v-container>
@@ -97,25 +132,25 @@
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>총 매물 수</dt>
-                <number class="number" md="4" :from="0" :to="999" :duration="3"/>
+                <number md="4" :from="0" :to="999" :duration="3" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>매매 수</dt>
-                <number class="number" md="4" :from="0" :to="222" :duration="1.2"/>
+                <number md="4" :from="0" :to="222" :duration="1.2" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>전세 수</dt>
-                <number class="number" md="4" :from="0" :to="444" :duration="2"/>
+                <number md="4" :from="0" :to="444" :duration="2" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>월세 수</dt>
-                <number class="number" md="4" :from="0" :to="333" :duration="1.7"/>
+                <number md="4" :from="0" :to="333" :duration="1.7" />
               </dl>
             </v-col>
           </v-row>
@@ -130,8 +165,11 @@
             <figure class="card">
               <img src="../assets/laemian.jpg" />
               <figcaption>
-                <h2>{{dummy1.name}}<hr></h2>
-                <p>{{dummy1.price}}</p>
+                <h2>
+                  {{ data.name }}
+                  <hr />
+                </h2>
+                <p>{{ data.price }}</p>
                 <div class="icons">
                   <i class="ion-android-pin"></i>
                   <i class="ion-heart" style="color: red"></i>
@@ -151,12 +189,17 @@ export default {
   data() {
     return {
       detailOption: false,
-      interests: [],
-      dummy1: {
-        name: '래미안',
-        price: '10억',
-        src: "../assets/laemian.jpg"
+      data: {
+        name: "래미안",
+        price: "10억",
+        src: "../assets/laemian.jpg",
       },
+      detailListTitle: ["필터", "가격", "옵션", "정렬"],
+      searchBy: "아파트",
+      sortBy: "가격",
+      price: [0, 9999],
+      value: 5,
+      interests: [],
     };
   },
   methods: {
@@ -166,6 +209,18 @@ export default {
     noShowDetail() {
       this.detailOption = false;
       this.interests = [];
+    },
+    priceSort() {
+      this.data.price.sort();
+    },
+    bulidSort() {
+      this.data.price.sort();
+    },
+    reviewSort() {
+      this.data.price.sort();
+    },
+    inquirySort() {
+      this.data.price.sort();
     },
   },
 };
