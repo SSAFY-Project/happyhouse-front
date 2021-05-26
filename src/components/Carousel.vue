@@ -1,12 +1,18 @@
 <template>
   <div>
     <v-carousel v-model="model">
-      <v-carousel-item v-for="(color, i) in colors" :key="color">
-        <v-sheet :color="color" height="100%" tile="tile">
+      <v-carousel-item v-for="news in list" :key="news.title">
+        <v-img :src="news.image" height="100%" tile="tile">
           <v-row class="fill-height" align="center" justify="center">
-            <div class="display-3">헤드뉴스 {{ i + 1 }}</div>
+            <div
+              class="display-3"
+              @click="gotoNews(news.link)"
+              style="padding-left: 50px; padding-right: 50px"
+            >
+              {{ news.title }}
+            </div>
           </v-row>
-        </v-sheet>
+        </v-img>
       </v-carousel-item>
     </v-carousel>
   </div>
@@ -14,11 +20,20 @@
 
 <script>
 export default {
+  computed: {
+    list() {
+      return this.$store.getters["newsmodule/newgetter"];
+    },
+  },
   data() {
     return {
       model: 0,
-      colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
-    }
-  }
-}
+    };
+  },
+  methods: {
+    gotoNews(link) {
+      window.open(link);
+    },
+  },
+};
 </script>

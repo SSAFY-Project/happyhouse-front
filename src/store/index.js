@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-// import newsmodule from "./module/newsmodule";
+import newsmodule from "./module/newsmodule";
 
 Vue.use(Vuex);
 
@@ -71,7 +71,7 @@ export default new Vuex.Store({
       commit("logout")
     }*/
   },
-  // modules: {
-  //   newsmodule: newsmodule,
-  // },
+  modules: {
+    newsmodule: newsmodule,
+  },
 });
