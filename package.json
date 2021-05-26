@@ -49,6 +49,9 @@
     "env": {
       "node": true
     },
+    "globals": {
+      "kakao": false
+    },
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
@@ -57,7 +60,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules" : {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",
