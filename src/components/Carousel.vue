@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-carousel v-model="model">
+    <v-carousel height="100vh" v-model="model">
       <v-carousel-item v-for="news in list" :key="news.title">
         <v-img :src="news.image" height="100%" tile="tile">
           <v-row class="fill-height" align="center" justify="center">

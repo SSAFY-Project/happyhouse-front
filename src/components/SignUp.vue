@@ -15,7 +15,7 @@
             </v-col>
             <v-col cols="6" md="8">
               <v-text-field
-                v-model="userPw"
+                v-model="userPwd"
                 :rules="pwRules"
                 label="비밀번호"
                 input="password"
@@ -35,21 +35,38 @@
 
             <v-col cols="6" md="8">
               <v-text-field
-                v-model="nickname"
-                :rules="nicknameRules"
-                :counter="10"
-                label="별명"
+                v-model="userAddr"
+                label="주소"
+                required="required"
+              />
+            </v-col>
+
+            <v-col cols="6" md="8">
+              <v-text-field
+                v-model="userTel"
+                label="전화번호"
+                required="required"
+              />
+            </v-col>
+
+            <v-col cols="6" md="8">
+              <v-text-field
+                v-model="userEmail"
+                :rules="emailRules"
+                label="이메일"
                 required="required"
               />
             </v-col>
           </v-row>
-          <v-card class="mb-3">
+          <!-- <v-card class="mb-3">
             <v-card-title>관심있는 것</v-card-title>
             <v-checkbox label="카페" value="카페" />
             <v-checkbox label="정류장" value="정류장" />
             <v-checkbox label="헬스장" value="헬스장" />
-          </v-card>
-          <v-btn class="mr-4" v-on:click="submit" color="primary">회원 가입</v-btn>
+          </v-card> -->
+          <v-btn class="mr-4" v-on:click="submit" color="primary"
+            >회원 가입</v-btn
+          >
           <v-btn>초기화</v-btn>
         </v-card-text>
       </v-card>
@@ -58,21 +75,29 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
       valid: false,
       userId: "",
-      userPw: "",
+      userPwd: "",
       userName: "",
-      nickname: "",
-      interest: [],
+      userAddr: "",
+      userTel: "",
+      userEmail: "",
 
       idRules: [
         (v) => !!v || "아이디를 입력하세요.",
+        // (v) => /.+@.+/.test(v) || "이메일 형식이 아닙니다.",
+        (v) => v !== "test" || "이미 등록된 아이디입니다.",
+        // 이미 등록된 아이디처리는 DB를 통해 찾아봐야 함.
+      ],
+
+      emailRules: [
+        (v) => !!v || "이메일을 입력하세요.",
         (v) => /.+@.+/.test(v) || "이메일 형식이 아닙니다.",
-        (v) => v !== "a@a.a" || "이미 등록된 아이디입니다.",
+        // (v) => v !== "a@a.a" || "이미 등록된 아이디입니다.",
         // 이미 등록된 아이디처리는 DB를 통해 찾아봐야 함.
       ],
 
@@ -94,9 +119,22 @@ export default {
     };
   },
   methods: {
-    // submit () {
-    //   axios.
-    // }
-  }
+    submit() {
+      axios
+        .post("http://localhost/user/register", {
+          userId: this.userId,
+          userEmail: this.userEmail,
+          userPwd: this.userPwd,
+          userAddr: this.userAddr,
+          userName: this.userName,
+          userTel: this.userTel,
+          userRole: "ROLE_USER",
+        })
+        .then((res) => {
+          alert("회원가입 완료!");
+          window.location.href = "/";
+        });
+    },
+  },
 };
 </script>

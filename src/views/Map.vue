@@ -36,12 +36,9 @@
                 ></v-progress-linear>
               </template>
 
-              <v-img
-                height="250"
-                :src = "images.sample"
-              ></v-img>
+              <v-img height="250" :src="images.sample"></v-img>
 
-              <v-card-title>{{item.aptName}}</v-card-title>
+              <v-card-title>{{ item.aptName }}</v-card-title>
 
               <v-card-text>
                 <v-row align="center" class="mx-0">
@@ -57,9 +54,11 @@
                   <div class="grey--text ms-4">4.5 (413)</div>
                 </v-row>
 
-                <div class="my-4 subtitle-1">평수 : {{item.area}}평</div>
-                <div class="my-4 subtitle-1">층수 : {{item.floor}}층</div>
-                <div class="my-4 subtitle-1">매매가 : {{item.dealAmount}}억 원</div>
+                <div class="my-4 subtitle-1">평수 : {{ item.area }}평</div>
+                <div class="my-4 subtitle-1">층수 : {{ item.floor }}층</div>
+                <div class="my-4 subtitle-1">
+                  매매가 : {{ item.dealAmount }}억 원
+                </div>
               </v-card-text>
 
               <v-divider class="mx-4"></v-divider>
@@ -151,7 +150,7 @@ export default {
       selection: 1,
       images: {
         sample: "",
-      }
+      },
     };
   },
   created() {
@@ -399,7 +398,9 @@ export default {
               // data.img = "@/assets/aptImgs" + data.aptName + ".jpg";
               this.sel_apt.push(data);
             }
-            this.images.sample = require('../assets/aptImgs/' + res.data.markerList[0].aptName + '.jpg');
+            this.images.sample = require("../assets/aptImgs/" +
+              res.data.markerList[0].aptName +
+              ".jpg");
           });
       });
     },
@@ -417,9 +418,9 @@ export default {
       return markerImage;
     },
     reserve() {
-      this.loading = true
+      this.loading = true;
 
-      this.seTimeout(() => (this.loading = false), 2000)
+      this.seTimeout(() => (this.loading = false), 2000);
     },
   },
 };

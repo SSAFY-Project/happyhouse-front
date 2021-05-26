@@ -17,8 +17,12 @@
                 {{ detailListTitle[0] }}
               </p>
               <v-btn-toggle tile color="deep-purple accent-2" group>
-                <v-btn value="apart" @click="searchBy = '아파트'"> 아파트 </v-btn>
-                <v-btn value="area" @click="searchBy = '지역(동)'"> 지역(동) </v-btn>
+                <v-btn value="apart" @click="searchBy = '아파트'">
+                  아파트
+                </v-btn>
+                <v-btn value="area" @click="searchBy = '지역(동)'">
+                  지역(동)
+                </v-btn>
               </v-btn-toggle>
             </v-col>
             <v-col md="3">
@@ -82,46 +86,66 @@
                 {{ detailListTitle[3] }}
               </p>
               <v-btn-toggle tile color="deep-purple accent-2" group>
-                <v-btn @click="priceSort; sortBy='가격'"> 가격 </v-btn>
-                <v-btn @click="bulidSort; sortBy='건축년도'"> 건축년도 </v-btn>
-                <v-btn @click="reviewSort; sortBy='평점'"> 평점 </v-btn>
-                <v-btn @click="inquirySort; sortBy='조회'"> 조회 </v-btn>
+                <v-btn
+                  @click="
+                    priceSort;
+                    sortBy = '가격';
+                  "
+                >
+                  가격
+                </v-btn>
+                <v-btn
+                  @click="
+                    bulidSort;
+                    sortBy = '건축년도';
+                  "
+                >
+                  건축년도
+                </v-btn>
+                <v-btn
+                  @click="
+                    reviewSort;
+                    sortBy = '평점';
+                  "
+                >
+                  평점
+                </v-btn>
+                <v-btn
+                  @click="
+                    inquirySort;
+                    sortBy = '조회';
+                  "
+                >
+                  조회
+                </v-btn>
               </v-btn-toggle>
             </v-col>
           </v-row>
           <v-chip
-                class="ma-2"
-                color="orange"
-                text-color="white"
-                @click:close="searchBy=null"
-              >
-                # {{ searchBy }}
-              </v-chip>
-              <v-chip
-                class="ma-2"
-                color="green"
-                text-color="white"
-              >
-                # {{ price[0] }} ~ {{price[1]}} 만원
-              </v-chip>
+            class="ma-2"
+            color="orange"
+            text-color="white"
+            @click:close="searchBy = null"
+          >
+            # {{ searchBy }}
+          </v-chip>
+          <v-chip class="ma-2" color="green" text-color="white">
+            # {{ price[0] }} ~ {{ price[1] }} 만원
+          </v-chip>
           <v-chip
-                class="ma-2"
-                close
-                color="blue"
-                text-color="white"
-                v-for="(item, idx) in interests"
-                :key="idx"
-                @click:close="interests.splice(idx, 1)"
-              >
-                # {{ item }}
-              </v-chip>
-              <v-chip
-                class="ma-2"
-                color="purple"
-                text-color="white"
-              >
-                # {{ sortBy }}
-              </v-chip>
+            class="ma-2"
+            close
+            color="blue"
+            text-color="white"
+            v-for="(item, idx) in interests"
+            :key="idx"
+            @click:close="interests.splice(idx, 1)"
+          >
+            # {{ item }}
+          </v-chip>
+          <v-chip class="ma-2" color="purple" text-color="white">
+            # {{ sortBy }}
+          </v-chip>
         </v-container>
 
         <v-container class="searchInput" align-center>

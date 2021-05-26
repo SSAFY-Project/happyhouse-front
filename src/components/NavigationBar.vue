@@ -15,11 +15,41 @@
       @change="$vuetify.theme.dark = !$vuetify.theme.dark"
     />
     <router-link to="/signin">
-      <v-btn>Sign In</v-btn>
+      <v-btn v-if="this.$store.state.userInfo === null">Sign In</v-btn>
     </router-link>
+    <router-link to="/mypage">
+      <v-btn v-if="this.$store.state.userInfo !== null">My Page</v-btn>
+    </router-link>
+    <v-btn v-if="this.$store.state.userInfo !== null" v-on:click="out">Sign Out</v-btn>
   </v-app-bar>
 </template>
 
 <script>
-export default {};
+import { mapActions, mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      isLogin: this.$store.getters.getLogin,
+    };
+  },
+  computed: {
+    check_isLogin() {
+      return this.$store.getters.getLogin;
+    },
+  },
+  watch: {
+    check_isLogin(val) {
+      this.isLogin = val;
+    },
+  },
+  methods: {
+    ...mapActions(["logout"]),
+    out() {
+      this.logout()
+      .then((res) => {
+        alert(res);
+      })
+    }
+  }
+};
 </script>

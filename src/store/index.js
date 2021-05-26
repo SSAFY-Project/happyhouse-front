@@ -13,59 +13,86 @@ export default new Vuex.Store({
   },
   mutations: {
     loginSuccess(state, payload) {
-      state.isLogin = true;
-      state.isLoginError = false;
-      state.userInfo = payload;
+      return new Promise((resolve, reject) => {
+        state.isLogin = true;
+        state.isLoginError = false;
+        state.userInfo = payload;
+
+        resolve();
+      });
     },
     loginError(state) {
-      state.isLogin = false;
-      state.isLoginError = true;
-      state.userInfo = null;
+      return new Promise((resolve, reject) => {
+        state.isLogin = false;
+        state.isLoginError = true;
+        state.userInfo = null;
+
+        resolve();
+      });
     },
   },
   getters: {
+    getLogin(state) {
+      return state.isLogin;
+    },
     newgetter(state) {
       return state.newsmodule.state.newsList;
     },
   },
   actions: {
     // 로그인
-    login({ dispatch }, loginObj) {
-      axios
-        .post("http://localhost/user/login", loginObj)
-        .then((res) => {
-          // 성공했으므로 토큰 받음
-          let token = res.data.token;
-          // // 토큰 로컬스토리지에 저장해야함(새로고침 팅김 방지)
-          localStorage.setItem("access_token", token);
-          dispatch("getUserInfo");
-        })
-        .catch(() => {
-          alert("아이디와 비밀번호를 확인하세요.");
-        });
+    async login({ commit }, loginObj) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("http://localhost/user/login", loginObj)
+          .then((res) => {
+            // 성공했으므로 토큰 받음
+            let token = res.data.token;
+            let userInfo = {
+              userEmail: res.data.user.userEmail,
+              userName: res.data.user.userNickName,
+              userFavorite: res.data.favorite,
+            };
+
+            // // 토큰 로컬스토리지에 저장해야함(새로고침 팅김 방지)
+            localStorage.setItem("access_token", token);
+
+            // console.log(userInfo);
+            // alert("로그인 성공");
+            commit("loginSuccess", userInfo);
+            resolve("로그인 성공");
+            // dispatch("getUserInfo", userInfo);
+          })
+          .catch(() => {
+            commit("loginError");
+            // alert("아이디와 비밀번호를 확인하세요.");
+            reject("아이디와 비밀번호를 확인하세요.");
+          });
+      });
     },
-    getUserInfo({ commit }) {
+    async logout({ commit }) {
+      return new Promise((resolve, reject) => {
+        commit("loginError");
+        resolve("로그아웃 되었습니다");
+      });
+    },
+    getUserInfo({ commit }, userInfo) {
       // 로컬에 있는 토큰 받기
-      let token = localStorage.getItem("access_token");
-      let config = {
-        headers: {
-          "access-token": token,
-        },
-      };
-      axios
-        .get("https://reqres.in/api/login/2", config)
-        .then((response) => {
-          let userInfo = {
-            id: response.data.data.id,
-            nickname: response.data.data.nickname,
-            favorite: response.data.data.favorite,
-          };
-          console.log(userInfo);
-          commit("loginSuccess", userInfo);
-        })
-        .catch(() => {
-          alert("아이디와 비밀번호를 확인하세요.");
-        });
+      // let token = localStorage.getItem("access_token");
+      // let config = {
+      //   headers: {
+      //     "access-token": token,
+      //   },
+      // };
+      // commit("loginSuccess", userInfo);
+      // axios
+      //   .get("https://reqres.in/api/login/2")
+      //   .then((response) => {
+      //     commit("loginSuccess", userInfo);
+      //   })
+      //   .catch(() => {
+      //     alert("아이디와 비밀번호를 확인하세요.");
+      //   });
     },
     /*logout({ commit }) {
       commit("logout")

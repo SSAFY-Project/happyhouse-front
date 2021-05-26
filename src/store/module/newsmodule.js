@@ -24,7 +24,8 @@ const actions = {
     axios.get("https://land.naver.com/news/").then((data) => {
       let $ = cheerio.load(data.data);
       let link =
-        "https://land.naver.com" + $("#headline_news_area > div.group > dl > dt > a").attr("href");
+        "https://land.naver.com" +
+        $("#headline_news_area > div.group > dl > dt > a").attr("href");
       let title = "";
       let image = "";
       axios.get(link).then((dataa) => {

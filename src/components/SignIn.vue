@@ -24,7 +24,9 @@
                   />
                 </v-col>
               </v-row>
-              <v-btn class="mr-4" color="primary" v-on:click="submit">로그인</v-btn>
+              <v-btn class="mr-4" color="primary" v-on:click="submit"
+                >로그인</v-btn
+              >
               <router-link to="/signup"
                 ><v-btn class="mr-4">회원 가입</v-btn></router-link
               >
@@ -37,7 +39,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -48,10 +50,17 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['login']),
-    submit () {
-      this.login({username: this.userId, password: this.userPw});
-    }
-  }
+    ...mapActions(["login"]),
+    submit() {
+      this.login({ username: this.userId, password: this.userPw })
+      .then((res) => {
+        alert(res);
+        this.$router.push('/');
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    },
+  },
 };
 </script>

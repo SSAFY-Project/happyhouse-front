@@ -6,6 +6,7 @@ import Search from "../views/Search.vue";
 import News from "../views/News.vue";
 import More from "../views/More.vue";
 import SignIn from "../components/SignIn.vue";
+import SignUp from "../components/SignUp.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: "/signin",
     name: "SignIn",
     component: SignIn,
+  },
+  {
+    path: "/signup",
+    name: "SignUp",
+    component: SignUp,
   },
 ];
 
