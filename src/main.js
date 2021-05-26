@@ -4,17 +4,20 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import VueFullPage from "vue-fullpage.js";
-import Map from "vue-naver-maps";
+//import Map from "vue-naver-maps";
+import Toggle from "vue-js-toggle-button";
+import VueNumber from "vue-number-animation";
+import Buefy from "buefy";
 
 Vue.config.productionTip = false;
 
-Vue.use(VueFullPage);
+Vue.use(VueFullPage).use(Toggle).use(VueNumber).use(Buefy);
 
-Vue.use(Map, {
-  clientID: "API키",
+/*Vue.use(Map, {
+  clientID: "g0htgx7lt8",
   useGovAPI: false,
   subModules: "",
-});
+});*/
 
 new Vue({
   router,
