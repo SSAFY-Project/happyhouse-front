@@ -27,65 +27,40 @@
       <v-row class="mt-2" no-gutters>
         <v-col cols="12" md="4">
           <v-flex v-for="item in this.sel_apt" :key="item.id">
-            <v-card :loading="loading" class="mx-auto" max-width="100%">
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
+            <v-card
+              style="border: 1px solid grey"
+              height="20vh"
+              max-width="100%"
+            >
+              <v-container>
+                <v-row>
+                  <v-col md="4">
+                    <v-img
+                      height="16vh"
+                      width="30vw"
+                      :src="images.sample"
+                      style="border-radius: 10px"
+                    ></v-img>
+                  </v-col>
+                  <v-col md="8">
+                    <v-list-item-title class="mb-2"
+                      >{{ item.aptName }}
+                      <v-btn icon @click="favorite = !favorite">
+                        <v-icon v-if="!favorite">mdi-heart-outline</v-icon>
+                        <v-icon v-if="favorite" style="color: red"
+                          >mdi-heart</v-icon
+                        >
+                      </v-btn>
+                    </v-list-item-title>
 
-              <v-img height="250" :src="images.sample"></v-img>
-
-              <v-card-title>{{ item.aptName }}</v-card-title>
-
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-rating
-                    :value="4.5"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-
-                  <div class="grey--text ms-4">4.5 (413)</div>
+                    <v-list-item dense class="ml-0 pl-0">
+                      평수 : {{ item.area }}평<br />
+                      층수 : {{ item.floor }}층<br />
+                      매매가 : {{ item.dealAmount }}억 원
+                    </v-list-item>
+                  </v-col>
                 </v-row>
-
-                <div class="my-4 subtitle-1">평수 : {{ item.area }}평</div>
-                <div class="my-4 subtitle-1">층수 : {{ item.floor }}층</div>
-                <div class="my-4 subtitle-1">
-                  매매가 : {{ item.dealAmount }}억 원
-                </div>
-              </v-card-text>
-
-              <v-divider class="mx-4"></v-divider>
-
-              <v-card-title>Tonight's availability</v-card-title>
-
-              <v-card-text>
-                <v-chip-group
-                  v-model="selection"
-                  active-class="deep-purple accent-4 white--text"
-                  column
-                >
-                  <v-chip>5:30PM</v-chip>
-
-                  <v-chip>7:30PM</v-chip>
-
-                  <v-chip>8:00PM</v-chip>
-
-                  <v-chip>9:00PM</v-chip>
-                </v-chip-group>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-btn color="deep-purple lighten-2" text @click="reserve">
-                  Reserve
-                </v-btn>
-              </v-card-actions>
+              </v-container>
             </v-card>
           </v-flex>
         </v-col>
@@ -146,11 +121,11 @@ export default {
       sel_dong: ["동"],
       sel_apt: [],
       locations: [],
-      loading: false,
       selection: 1,
       images: {
         sample: "",
       },
+      favorite: false,
     };
   },
   created() {
