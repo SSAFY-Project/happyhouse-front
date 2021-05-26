@@ -7,7 +7,7 @@ import News from "../views/News.vue";
 import More from "../views/More.vue";
 import SignIn from "../components/SignIn.vue";
 import SignUp from "../components/SignUp.vue";
-
+import Manager from "../views/Manager.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -45,6 +45,11 @@ const routes = [
     path: "/signup",
     name: "SignUp",
     component: SignUp,
+  },
+  {
+    path: "/manager",
+    name: "Manager",
+    component: Manager,
   },
 ];
 
