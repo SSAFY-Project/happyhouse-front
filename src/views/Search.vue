@@ -148,11 +148,12 @@
           </v-chip>
         </v-container>
         <v-text-field
-          class="pt-2"
+          class="pt-2 text-white"
           label="검색어"
           outlined
           @keypress.enter="search"
           v-model="searchKeyword"
+          color="white"
         ></v-text-field>
         <!-- <v-container class="searchInput" align-center @keydown.enter="search">
           <v-autocomplete auto-select-first filled solo v-model="searchKeyword"/>
@@ -348,8 +349,13 @@ export default {
 </script>
 
 <style>
+.text-white input {
+  color: white !important;
+}
+
 .searchBar {
-  background-image: url("../assets/searchColor5.jpg");
+  background-color: gray;
+  /* background-image: url("../assets/searchColor5.jpg"); */
   background-position: center;
   background-size: cover;
 }
