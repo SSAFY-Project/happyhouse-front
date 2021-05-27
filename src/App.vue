@@ -53,7 +53,7 @@
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>회원 정보</v-list-item-title>
+            <v-list-item-title>회원 정보 수정</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
