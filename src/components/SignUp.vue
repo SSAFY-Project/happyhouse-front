@@ -132,7 +132,7 @@ export default {
         })
         .then((res) => {
           alert("회원가입 완료!");
-          window.location.href = "/";
+          window.location.href = "/signin";
         });
     },
   },
