@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import axios from "axios";
 import newsmodule from "./module/newsmodule";
 import managermodule from "./module/managermodule";
+import housemodule from "./module/housemodule";
 
 Vue.use(Vuex);
 
@@ -144,5 +145,6 @@ export default new Vuex.Store({
   modules: {
     newsmodule: newsmodule,
     managermodule: managermodule,
+    housemodule: housemodule,
   },
 });
