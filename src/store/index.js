@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import axios from "axios";
 import newsmodule from "./module/newsmodule";
 import managermodule from "./module/managermodule";
-import housemodule from "./module/housemodule";
 
 Vue.use(Vuex);
 
@@ -12,6 +11,8 @@ export default new Vuex.Store({
     userInfo: null,
     isLogin: false,
     isLoginError: false,
+    // 추가
+    isAdmin: false,
     allUser: [
       {
         id: "woongseob",
@@ -69,12 +70,12 @@ export default new Vuex.Store({
     getLogin(state) {
       return state.isLogin;
     },
-    newsgetter(state) {
+    newgetter(state) {
       return state.newsmodule.state.newsList;
     },
-    // getHouseDeal(state) {
-    //   return state.housemodule.state.houseDealInfo;
-    // },
+    isAdmin(state) {
+      return state.isAdmin;
+    },
     /*allUser(state) {
       return state.allUser;
     }*/
@@ -87,18 +88,26 @@ export default new Vuex.Store({
           .post("http://localhost/user/login", loginObj)
           .then((res) => {
             // 성공했으므로 토큰 받음
-            console.log(res.data.token);
+            // let token = res.data.token;
             let userInfo = {
               userToken: res.data.token,
               userEmail: res.data.user.userEmail,
               userName: res.data.user.userNickName,
+              userRole: res.data.user.userRole,
               userFavorite: res.data.favorite,
             };
+            // // 토큰 로컬스토리지에 저장해야함(새로고침 팅김 방지)
+            // localStorage.setItem("access_token", token);
+
+            // console.log(userInfo);
+            // alert("로그인 성공");
             commit("loginSuccess", userInfo);
             resolve("로그인 성공");
+            // dispatch("getUserInfo", userInfo);
           })
           .catch(() => {
             commit("loginError");
+            // alert("아이디와 비밀번호를 확인하세요.");
             reject("아이디와 비밀번호를 확인하세요.");
           });
       });
@@ -127,10 +136,12 @@ export default new Vuex.Store({
       //     alert("아이디와 비밀번호를 확인하세요.");
       //   });
     },
+    /*logout({ commit }) {
+      commit("logout")
+    }*/
   },
   modules: {
     newsmodule: newsmodule,
     managermodule: managermodule,
-    housemodule: housemodule,
   },
 });
