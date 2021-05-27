@@ -44,11 +44,11 @@ export default {
           text: "아이디",
           align: "start",
           sortable: false,
-          value: "id",
+          value: "userId",
         },
-        { text: "이름", value: "name" },
-        { text: "가입일", value: "date" },
-        { text: "등급", value: "role" },
+        { text: "이름", value: "userNickName" },
+        { text: "가입일", value: "userRegisterDate" },
+        { text: "등급", value: "userRole" },
         { text: "회원 관리", value: "actions", sortable: false },
       ],
       allUser: [],
@@ -67,26 +67,33 @@ export default {
 
   methods: {
     initialize() {
-      //this.allUser = this.$store.getters.allUser();
       this.$store.dispatch("managermodule/getusers");
-      this.allUser = this.$store.userlist;
+      console.log("asdasdasd");
+      console.log(this.$store.state.managermodule.userlist);
+      this.allUser = this.$store.state.managermodule.userlist;
     },
 
     deleteItem(item) {
+      this.editedIndex = this.allUser.indexOf(item);
+      this.editedId = this.allUser[this.editedIndex].userId;
+      this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
+      //db에서 삭제하는 구문 추가 예정
     },
 
     deleteItemConfirm() {
-      //this.$store.actions.deleteUser();
+      this.allUser.splice(this.editedIndex, 1);
+      console.log(this.editedId);
+      this.$store.dispatch("managermodule/deleteuser", { userid: this.editedId });
       this.closeDelete();
     },
 
     closeDelete() {
       this.dialogDelete = false;
-      this.$nextTick(() => {
-        //this.allUser = this.$store.getters.allUser();
-        this.allUser = this.$store.state.userlist;
-      });
+      //   this.$nextTick(() => {
+      //     //this.allUser = this.$store.getters.allUser();
+      //     this.allUser = this.$store.state.userlist;
+      //});
     },
   },
 };
