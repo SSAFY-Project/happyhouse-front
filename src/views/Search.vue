@@ -148,7 +148,7 @@
           </v-chip>
         </v-container>
 
-        <v-container class="searchInput" align-center>
+        <v-container class="searchInput" align-center @keydown.enter="search">
           <v-autocomplete auto-select-first filled solo />
         </v-container>
         <v-container class="slotMachine">
@@ -185,15 +185,15 @@
       <v-container class="cardList">
         <!---->
         <v-row>
-          <v-col md="4" v-for="i in 9" :key="i">
+          <v-col md="4" v-for="i of 9" :key="i" v-model="data">
             <figure class="card">
-              <img src="../assets/laemian.jpg" />
+              <!-- <img :src=data[] /> -->
               <figcaption>
                 <h2>
-                  {{ data.name }}
+                  {{ data[i].name }}
                   <hr />
                 </h2>
-                <p>{{ data.price }}</p>
+                <p>{{ data[i].price }}</p>
                 <div class="icons">
                   <i class="ion-android-pin"></i>
                   <i class="ion-heart" style="color: red"></i>
@@ -209,22 +209,36 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
       detailOption: false,
-      data: {
-        name: "래미안",
-        price: "10억",
-        src: "../assets/laemian.jpg",
-      },
+      searchKeyword: "",
+      data: [
+        
+      ],
       detailListTitle: ["필터", "가격", "옵션", "정렬"],
       searchBy: "아파트",
       sortBy: "가격",
       price: [0, 9999],
       value: 5,
       interests: [],
+      
     };
+  },
+  beforeCreate() {
+    this.$store.dispatch("housemodule/getHouseDeals").then(() => {
+      const list = this.$store.getters["housemodule/getHouseDeal"];
+      
+      for(const elem of list) {
+        this.data.push({
+          name : elem.aptName,
+          price: elem.dealAmount + "만",
+          src: "../assets/" + elem.aptName + ".jpg"
+        })
+      }
+    })
   },
   methods: {
     showDetail() {
@@ -246,6 +260,9 @@ export default {
     inquirySort() {
       this.data.price.sort();
     },
+    search() {
+      console.log("search");
+    }
   },
 };
 </script>
