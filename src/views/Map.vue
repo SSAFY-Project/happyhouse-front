@@ -2,14 +2,36 @@
   <v-main>
     <v-container fluid class="pa-0">
       <v-row class="mt-4">
-        <v-combobox v-model="sel_sido" :items="sido" label="도/광역시" outlined dense />
-        <v-combobox v-model="sel_gugun" :items="gugun" label="시/구/군" outlined dense />
-        <v-combobox v-model="sel_dong" :items="dong" label="동" outlined dense />
+        <v-combobox
+          v-model="sel_sido"
+          :items="sido"
+          label="도/광역시"
+          outlined
+          dense
+        />
+        <v-combobox
+          v-model="sel_gugun"
+          :items="gugun"
+          label="시/구/군"
+          outlined
+          dense
+        />
+        <v-combobox
+          v-model="sel_dong"
+          :items="dong"
+          label="동"
+          outlined
+          dense
+        />
       </v-row>
       <v-row class="mt-2" no-gutters>
         <v-col cols="12" md="4">
           <v-flex v-for="item in this.sel_apt" :key="item.data.id">
-            <v-card style="border: 1px solid grey" height="20vh" max-width="100%">
+            <v-card
+              style="border: 1px solid grey"
+              height="20vh"
+              max-width="100%"
+            >
               <v-container>
                 <v-row>
                   <v-col md="4">
@@ -25,7 +47,9 @@
                       >{{ item.data.aptName }}
                       <v-btn icon @click="add_favorite(item)">
                         <v-icon v-if="!item.favor">mdi-heart-outline</v-icon>
-                        <v-icon v-if="item.favor" style="color: red">mdi-heart</v-icon>
+                        <v-icon v-if="item.favor" style="color: red"
+                          >mdi-heart</v-icon
+                        >
                       </v-btn>
                     </v-list-item-title>
                     <v-list-item dense class="ml-0 pl-0">
@@ -175,7 +199,8 @@ export default {
     //동 선택시
     sel_dong: function (newVal) {
       if (newVal !== "동") {
-        let address = this.sel_sido.text + " " + this.sel_gugun.text + " " + this.sel_dong;
+        let address =
+          this.sel_sido.text + " " + this.sel_gugun.text + " " + this.sel_dong;
 
         //해당 동의 아파, 주택 정보 be와 통신
         axios
@@ -223,7 +248,10 @@ export default {
       map = new kakao.maps.Map(container, options);
       (markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT)), // 기본, 클릭 마커의 크기
         (markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y)), // 기본, 클릭 마커의 기준좌표
-        (overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH, OVER_MARKER_HEIGHT)), // 오버 마커의 크기
+        (overMarkerSize = new kakao.maps.Size(
+          OVER_MARKER_WIDTH,
+          OVER_MARKER_HEIGHT
+        )), // 오버 마커의 크기
         (overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y)), // 오버 마커의 기준 좌표
         (spriteImageSize = new kakao.maps.Size(SPRITE_WIDTH, SPRITE_HEIGHT)); // 스프라이트 이미지의 크기
     },
@@ -265,9 +293,21 @@ export default {
     },
     addMarker(position, aptName, normalOrigin, overOrigin, clickOrigin) {
       // 기본 마커이미지, 오버 마커이미지, 클릭 마커이미지를 생성합니다
-      let normalImage = this.createMarkerImage(markerSize, markerOffset, normalOrigin),
-        overImage = this.createMarkerImage(overMarkerSize, overMarkerOffset, overOrigin),
-        clickImage = this.createMarkerImage(markerSize, markerOffset, clickOrigin);
+      let normalImage = this.createMarkerImage(
+          markerSize,
+          markerOffset,
+          normalOrigin
+        ),
+        overImage = this.createMarkerImage(
+          overMarkerSize,
+          overMarkerOffset,
+          overOrigin
+        ),
+        clickImage = this.createMarkerImage(
+          markerSize,
+          markerOffset,
+          clickOrigin
+        );
 
       // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
       let marker = new kakao.maps.Marker({
@@ -308,7 +348,8 @@ export default {
         if (!selectedMarker || selectedMarker !== marker) {
           // 클릭된 마커 객체가 null이 아니면
           // 클릭된 마커의 이미지를 기본 이미지로 변경하고
-          !!selectedMarker && selectedMarker.setImage(selectedMarker.normalImage);
+          !!selectedMarker &&
+            selectedMarker.setImage(selectedMarker.normalImage);
 
           // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
           marker.setImage(clickImage);
@@ -318,7 +359,12 @@ export default {
         selectedMarker = marker;
 
         axios
-          .get("http://localhost/search/markerlist?dong=" + this.sel_dong + "&aptName=" + marker.Fb)
+          .get(
+            "http://localhost/search/markerlist?dong=" +
+              this.sel_dong +
+              "&aptName=" +
+              marker.Fb
+          )
           .then((res) => {
             this.sel_apt = [];
             for (const data of res.data.markerList) {

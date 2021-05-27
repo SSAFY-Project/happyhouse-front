@@ -132,7 +132,7 @@ export default {
         })
         .then((res) => {
           alert("회원가입 완료!");
-          this.$router.push('/signin');
+          this.$router.push("/signin");
         });
     },
   },

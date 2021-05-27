@@ -168,19 +168,34 @@
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>매매 수</dt>
-                <number md="4" :from="0" :to="data.length * 2 / 9" :duration="1.2" />
+                <number
+                  md="4"
+                  :from="0"
+                  :to="(data.length * 2) / 9"
+                  :duration="1.2"
+                />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>전세 수</dt>
-                <number md="4" :from="0" :to="data.length * 3 / 9" :duration="2" />
+                <number
+                  md="4"
+                  :from="0"
+                  :to="(data.length * 3) / 9"
+                  :duration="2"
+                />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>월세 수</dt>
-                <number md="4" :from="0" :to="data.length * 4 / 9" :duration="1.7" />
+                <number
+                  md="4"
+                  :from="0"
+                  :to="(data.length * 4) / 9"
+                  :duration="1.7"
+                />
               </dl>
             </v-col>
           </v-row>

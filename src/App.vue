@@ -6,11 +6,18 @@
       </v-container>
       <v-list-item align-center>
         <v-list-item-content>
-          <v-list-item-title class="title" v-if="this.$store.state.userInfo === null">
+          <v-list-item-title
+            class="title"
+            v-if="this.$store.state.userInfo === null"
+          >
             게스트 / Guest
           </v-list-item-title>
-          <v-list-item-title class="title" v-if="this.$store.state.userInfo !== null">
-            {{ this.$store.state.userInfo.userName }} / {{ this.$store.state.userInfo.userRole }}
+          <v-list-item-title
+            class="title"
+            v-if="this.$store.state.userInfo !== null"
+          >
+            {{ this.$store.state.userInfo.userName }} /
+            {{ this.$store.state.userInfo.userRole }}
           </v-list-item-title>
           <v-list-item-subtitle v-if="this.$store.state.userInfo !== null">
             {{ this.$store.state.userInfo.userEmail }}

@@ -41,7 +41,10 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit("CLEAR");
       axios
-        .get("http://localhost/favorite/getFavListByUserId?userId=" + store.state.userInfo.userId)
+        .get(
+          "http://localhost/favorite/getFavListByUserId?userId=" +
+            store.state.userInfo.userId
+        )
         .then((data) => {
           commit("FAVORITELIST", data.data);
           resolve();

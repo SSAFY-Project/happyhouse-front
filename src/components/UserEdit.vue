@@ -6,7 +6,7 @@
         <v-card-text>
           <v-row class="mb-3">
             <v-col cols="6" md="8">
-              <p>{{userId}}</p>
+              <p>{{ userId }}</p>
             </v-col>
             <v-col cols="6" md="8">
               <v-text-field
@@ -15,6 +15,7 @@
                 label="비밀번호"
                 input="password"
                 required="required"
+                ref="userPwd"
               />
             </v-col>
 
@@ -25,6 +26,7 @@
                 :counter="10"
                 label="이름"
                 required="required"
+                ref="userName"
               />
             </v-col>
 
@@ -33,6 +35,7 @@
                 v-model="userAddr"
                 label="주소"
                 required="required"
+                ref="userAddr"
               />
             </v-col>
 
@@ -41,6 +44,7 @@
                 v-model="userTel"
                 label="전화번호"
                 required="required"
+                ref="userTel"
               />
             </v-col>
 
@@ -50,6 +54,7 @@
                 :rules="emailRules"
                 label="이메일"
                 required="required"
+                ref="userEmail"
               />
             </v-col>
           </v-row>
@@ -64,8 +69,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import router from '../router/index';
+import axios from "axios";
+import router from "../router/index";
 export default {
   data() {
     return {
@@ -76,13 +81,6 @@ export default {
       userAddr: "",
       userTel: "",
       userEmail: "",
-
-      idRules: [
-        (v) => !!v || "아이디를 입력하세요.",
-        // (v) => /.+@.+/.test(v) || "이메일 형식이 아닙니다.",
-        (v) => v !== "test" || "이미 등록된 아이디입니다.",
-        // 이미 등록된 아이디처리는 DB를 통해 찾아봐야 함.
-      ],
 
       emailRules: [
         (v) => !!v || "이메일을 입력하세요.",
@@ -109,28 +107,52 @@ export default {
     };
   },
   mounted() {
-    if(this.$store.state.userInfo == null) {
-        router.push("/signin");
+    if (this.$store.state.userInfo == null) {
+      router.push("/signin");
     } else {
-        
-        this.userId = this.$store.state.userInfo.userId;
-        this.userName = this.$store.state.userInfo.userName;
-        this.userAddr = this.$store.state.userInfo.userAddr;
-        this.userTel = this.$store.state.userInfo.userTel;
-        this.userEmail = this.$store.state.userInfo.userEmail;
+      this.userId = this.$store.state.userInfo.userId;
+      this.userName = this.$store.state.userInfo.userName;
+      this.userAddr = this.$store.state.userInfo.userAddr;
+      this.userTel = this.$store.state.userInfo.userTel;
+      this.userEmail = this.$store.state.userInfo.userEmail;
     }
   },
   methods: {
-      submit: function()  {
-          this.pwRules;
-      },
-      clear: function() {
-          this.userId = "";
-          this.userName = "";
-          this.userAddr = "";
-          this.userTel = "";
-          this.userEmail = "";
-      },
+    submit: function () {
+      if (this.userPwd === "") {
+        // this.userPwd = "";
+        this.$refs.userPwd.focus();
+        this.$refs.userPwd.blur();
+        return;
+      }
+
+      const data = {
+        userId: this.userId,
+        userPwd: this.userPwd,
+        userNickName: this.userName,
+        userEmail: this.userEmail,
+        userAddr: this.userAddr,
+        userTel: this.userTel,
+      };
+
+      const headers = {
+        "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
+      };
+      
+      axios.put("http://localhost/user/modify", data, {
+        headers: headers,
+      }).then((res) => {
+        this.$router.push("/");
+      }).catch((err) => {
+          alert(err);
+      })
+    },
+    clear: function () {
+      this.userName = "";
+      this.userAddr = "";
+      this.userTel = "";
+      this.userEmail = "";
+    },
   },
-}
+};
 </script>
