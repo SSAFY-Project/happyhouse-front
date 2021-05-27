@@ -42,7 +42,9 @@
                   <br />
                 </v-container>
                 <div class="wrap">
-                  <button class="button">검색하기</button>
+                  <router-link to="/search">
+                    <button class="button">검색하기</button>
+                  </router-link>
                 </div>
               </v-col>
             </v-row>

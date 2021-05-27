@@ -2,7 +2,9 @@
   <v-app-bar app>
     <v-app-bar-nav-icon @click="$emit('showDrawer')"></v-app-bar-nav-icon>
     <v-col cols="1" class="pl-0">
-      <v-img src="@/assets/HomeLogo.jpeg" max-width="100%" />
+      <router-link to="/">
+        <v-img src="@/assets/HomeLogo.jpeg" max-width="100%" />
+      </router-link>
     </v-col>
     <v-tabs centered class="ml-n9" color="grey darken-1">
       <v-tab router-link to="/">HOME</v-tab>
