@@ -354,8 +354,8 @@ export default {
 }
 
 .searchBar {
-  background-color: gray;
-  /* background-image: url("../assets/searchColor5.jpg"); */
+  /* background-color: gray; */
+  background-image: url("../assets/SearchScreen.jpeg");
   background-position: center;
   background-size: cover;
 }

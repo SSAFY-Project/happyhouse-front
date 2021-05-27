@@ -106,6 +106,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: BMJUA;
+  src: url("./font/BMJUA_ttf.ttf");
+}
+
+body > * {
+  font-family: BMJUA !important;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -115,6 +124,7 @@ export default {
   padding-top: 100%;
   overflow: hidden;
 }
+
 .profileImg {
   width: 100%;
   height: 100%;
