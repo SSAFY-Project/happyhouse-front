@@ -1,6 +1,14 @@
 <template>
   <div>
     <v-main class="searchBar">
+      <v-container>
+        <v-container class="btnAry" align-center>
+          <button @click="noShowDetail" class="btn">통합검색</button>
+          <button @click="showDetail" class="btn">상세검색 ></button>
+          <router-link to="/map">
+            <button class="btn">지도검색</button>
+          </router-link>
+        </v-container>
         <v-container style="background-color: white" v-if="detailOption">
           <v-row>
             <!--필터 검색-->
@@ -9,12 +17,8 @@
                 {{ detailListTitle[0] }}
               </p>
               <v-btn-toggle tile color="deep-purple accent-2" group>
-                <v-btn value="apart" @click="searchBy = '아파트'">
-                  아파트
-                </v-btn>
-                <v-btn value="area" @click="searchBy = '지역(동)'">
-                  지역(동)
-                </v-btn>
+                <v-btn value="apart" @click="searchBy = '아파트'"> 아파트 </v-btn>
+                <v-btn value="area" @click="searchBy = '지역(동)'"> 지역(동) </v-btn>
               </v-btn-toggle>
             </v-col>
             <v-col md="3">
@@ -28,11 +32,7 @@
                 v-model="price[0]"
               ></v-text-field>
               ~
-              <v-text-field
-                label="최대"
-                v-model="price[1]"
-                outlined
-              ></v-text-field>
+              <v-text-field label="최대" v-model="price[1]" outlined></v-text-field>
               <b-field>
                 <b-slider
                   rounded
@@ -48,30 +48,10 @@
               <p class="py-3" style="border-bottom: 1px solid gray">
                 {{ detailListTitle[2] }}
               </p>
-              <v-checkbox
-                label="대출 지원"
-                value="대출 지원"
-                dense
-                v-model="interests"
-              />
-              <v-checkbox
-                label="주차 가능"
-                value="주차 가능"
-                dense
-                v-model="interests"
-              />
-              <v-checkbox
-                label="관리비 포함"
-                value="관리비 포함"
-                dense
-                v-model="interests"
-              />
-              <v-checkbox
-                label="도보 5분"
-                value="도보 5분"
-                dense
-                v-model="interests"
-              />
+              <v-checkbox label="대출 지원" value="대출 지원" dense v-model="interests" />
+              <v-checkbox label="주차 가능" value="주차 가능" dense v-model="interests" />
+              <v-checkbox label="관리비 포함" value="관리비 포함" dense v-model="interests" />
+              <v-checkbox label="도보 5분" value="도보 5분" dense v-model="interests" />
             </v-col>
             <v-col class="py-3" md="3">
               <p class="py-3" style="border-bottom: 1px solid gray">
@@ -113,12 +93,7 @@
               </v-btn-toggle>
             </v-col>
           </v-row>
-          <v-chip
-            class="ma-2"
-            color="orange"
-            text-color="white"
-            @click:close="searchBy = null"
-          >
+          <v-chip class="ma-2" color="orange" text-color="white" @click:close="searchBy = null">
             # {{ searchBy }}
           </v-chip>
           <v-chip class="ma-2" color="green" text-color="white">
@@ -135,9 +110,7 @@
           >
             # {{ item }}
           </v-chip>
-          <v-chip class="ma-2" color="purple" text-color="white">
-            # {{ sortBy }}
-          </v-chip>
+          <v-chip class="ma-2" color="purple" text-color="white"> # {{ sortBy }} </v-chip>
         </v-container>
 
         <v-container class="searchInput" align-center>
