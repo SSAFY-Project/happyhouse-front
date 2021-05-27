@@ -8,18 +8,7 @@
         >
           SSAFY
         </div>
-        <div class="w3-display-middle">
-          <!--<p
-            class="w3-jumbo w3-animate-top"
-            style="color: white; margin-bottom: 0px"
-          >
-            HAPPY HOUSE
-          </p>
-          <hr
-            class="w3"
-            style="border: 0.1px solid white; margin: auto; width: 48%"
-          />-->
-        </div>
+        <div class="w3-display-middle"></div>
         <div
           class="w3-display-bottomleft w3-padding-large"
           :style="`color:white`"
@@ -36,161 +25,163 @@
         <v-row style="height: 100vh">
           <v-col md="6">
             <v-row>
-            <v-col md="4"></v-col>
-            <v-col md="4" style="margin-top: 200px">
-              <v-container style="text-align: left">
-              <strong>저희 프로젝트는</strong>
-              </v-container>
-              <br />
-              <v-container style="text-align: left">
-              <span class="startWord">
-                지역별 검색과<br />상세 검색
-                <span class="endWord">을 통해<br />좋은 집을<br />
-                구해드립니다.<br /><br /></span>
-              </span>
-              <br />
-              </v-container>
-              <div class="wrap">
-                <button class="button">검색하기</button>
-              </div>
-            </v-col>
+              <v-col md="4"></v-col>
+              <v-col md="4" style="margin-top: 200px">
+                <v-container style="text-align: left">
+                  <strong>저희 프로젝트는</strong>
+                </v-container>
+                <br />
+                <v-container style="text-align: left">
+                  <span class="startWord">
+                    지역별 검색과<br />상세 검색
+                    <span class="endWord"
+                      >을 통해<br />좋은 집을<br />
+                      구해드립니다.<br /><br
+                    /></span>
+                  </span>
+                  <br />
+                </v-container>
+                <div class="wrap">
+                  <button class="button">검색하기</button>
+                </div>
+              </v-col>
             </v-row>
           </v-col>
           <v-col class="right_box" md="6">
             <v-row>
-                <ul class="imgSlide">
-                  <li>
-                    <img class="imgBox" src="@/assets/상암동.jpg">
-                    <span class="imgWord">상암동 MBC</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/가로수길.png">
-                    <span class="imgWord">가로수길</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/용산.jpg">
-                    <span class="imgWord">남산타워</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/잠실.jpg">
-                    <span class="imgWord">석촌호수</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/상암동.jpg">
-                    <span class="imgWord">상암동 MBC</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/가로수길.png">
-                    <span class="imgWord">가로수길</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/용산.jpg">
-                    <span class="imgWord">남산타워</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/잠실.jpg">
-                    <span class="imgWord">석촌호수</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/상암동.jpg">
-                    <span class="imgWord">상암동 MBC</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/가로수길.png">
-                    <span class="imgWord">가로수길</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/용산.jpg">
-                    <span class="imgWord">남산타워</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/잠실.jpg">
-                    <span class="imgWord">석촌호수</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/상암동.jpg">
-                    <span class="imgWord">상암동 MBC</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/가로수길.png">
-                    <span class="imgWord">가로수길</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/용산.jpg">
-                    <span class="imgWord">남산타워</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/잠실.jpg">
-                    <span class="imgWord">석촌호수</span>
-                  </li>
-                </ul>
-                <ul class="imgSlide">
-                  <li>
-                    <img class="imgBox" src="@/assets/판교.jpg">
-                    <span class="imgWord">판교</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/정자.jpg">
-                    <span class="imgWord">정자</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/창덕궁.jpg">
-                    <span class="imgWord">창덕궁</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/보성 녹차.jpg">
-                    <span class="imgWord">보성 녹차밭</span>
-                  </li>
-                  <li>
-                  <li>
-                    <img class="imgBox" src="@/assets/판교.jpg">
-                    <span class="imgWord">판교</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/정자.jpg">
-                    <span class="imgWord">정자</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/창덕궁.jpg">
-                    <span class="imgWord">창덕궁</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/보성 녹차.jpg">
-                    <span class="imgWord">보성 녹차밭</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/판교.jpg">
-                    <span class="imgWord">판교</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/정자.jpg">
-                    <span class="imgWord">정자</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/창덕궁.jpg">
-                    <span class="imgWord">창덕궁</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/보성 녹차.jpg">
-                    <span class="imgWord">보성 녹차밭</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/판교.jpg">
-                    <span class="imgWord">판교</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/정자.jpg">
-                    <span class="imgWord">정자</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/창덕궁.jpg">
-                    <span class="imgWord">창덕궁</span>
-                  </li>
-                  <li>
-                    <img class="imgBox" src="@/assets/보성 녹차.jpg">
-                    <span class="imgWord">보성 녹차밭</span>
-                  </li>
-                </ul>
+              <ul class="imgSlide">
+                <li>
+                  <img class="imgBox" src="@/assets/상암동.jpg" />
+                  <span class="imgWord">상암동 MBC</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/가로수길.png" />
+                  <span class="imgWord">가로수길</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/용산.jpg" />
+                  <span class="imgWord">남산타워</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/잠실.jpg" />
+                  <span class="imgWord">석촌호수</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/상암동.jpg" />
+                  <span class="imgWord">상암동 MBC</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/가로수길.png" />
+                  <span class="imgWord">가로수길</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/용산.jpg" />
+                  <span class="imgWord">남산타워</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/잠실.jpg" />
+                  <span class="imgWord">석촌호수</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/상암동.jpg" />
+                  <span class="imgWord">상암동 MBC</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/가로수길.png" />
+                  <span class="imgWord">가로수길</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/용산.jpg" />
+                  <span class="imgWord">남산타워</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/잠실.jpg" />
+                  <span class="imgWord">석촌호수</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/상암동.jpg" />
+                  <span class="imgWord">상암동 MBC</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/가로수길.png" />
+                  <span class="imgWord">가로수길</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/용산.jpg" />
+                  <span class="imgWord">남산타워</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/잠실.jpg" />
+                  <span class="imgWord">석촌호수</span>
+                </li>
+              </ul>
+              <ul class="imgSlide">
+                <li>
+                  <img class="imgBox" src="@/assets/판교.jpg" />
+                  <span class="imgWord">판교</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/정자.jpg" />
+                  <span class="imgWord">정자</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/창덕궁.jpg" />
+                  <span class="imgWord">창덕궁</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/보성 녹차.jpg" />
+                  <span class="imgWord">보성 녹차밭</span>
+                </li>
+                <li></li>
+                <li>
+                  <img class="imgBox" src="@/assets/판교.jpg" />
+                  <span class="imgWord">판교</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/정자.jpg" />
+                  <span class="imgWord">정자</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/창덕궁.jpg" />
+                  <span class="imgWord">창덕궁</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/보성 녹차.jpg" />
+                  <span class="imgWord">보성 녹차밭</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/판교.jpg" />
+                  <span class="imgWord">판교</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/정자.jpg" />
+                  <span class="imgWord">정자</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/창덕궁.jpg" />
+                  <span class="imgWord">창덕궁</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/보성 녹차.jpg" />
+                  <span class="imgWord">보성 녹차밭</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/판교.jpg" />
+                  <span class="imgWord">판교</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/정자.jpg" />
+                  <span class="imgWord">정자</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/창덕궁.jpg" />
+                  <span class="imgWord">창덕궁</span>
+                </li>
+                <li>
+                  <img class="imgBox" src="@/assets/보성 녹차.jpg" />
+                  <span class="imgWord">보성 녹차밭</span>
+                </li>
+              </ul>
             </v-row>
           </v-col>
         </v-row>
@@ -239,7 +230,7 @@ export default {
 
 <style>
 #section1 {
-  background-image: url("@/assets/HomeScreen.jpeg");
+  background-image: url("../assets/HomeScreen.jpeg");
   background-position: center;
   background-size: cover;
 }
@@ -308,7 +299,7 @@ ul.imgSlide {
   transform: translate(0, -50%);
   width: 100%;
   text-align: center;
-  font-family: 'Calibre-webfont', sans-serif;
+  font-family: "Calibre-webfont", sans-serif;
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -351,7 +342,7 @@ ul.imgSlide {
     -moz-transform: translateY(-8448px);
     -ms-transform: translateY(-8448px);
     -webkit-transform: translateY(-8448px);
-    transform: translateY(-8448px)
+    transform: translateY(-8448px);
   }
 }
 </style>

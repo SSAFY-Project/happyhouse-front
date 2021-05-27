@@ -8,6 +8,7 @@
           label="도/광역시"
           outlined
           dense
+          class="mr-5"
         />
         <v-combobox
           v-model="sel_gugun"
@@ -15,6 +16,7 @@
           label="시/구/군"
           outlined
           dense
+          class="mr-5"
         />
         <v-combobox
           v-model="sel_dong"
@@ -31,6 +33,7 @@
               style="border: 1px solid grey"
               height="20vh"
               max-width="100%"
+              class="mr-5"
             >
               <v-container>
                 <v-row>
@@ -392,32 +395,23 @@ export default {
       return markerImage;
     },
     add_favorite(item) {
-      item.favor = !item.favor;
-      const data = {
-        userId: this.$store.state.userInfo.userId,
-        housedealId: item.data.no,
-      };
+      if (this.$store.state.userInfo === null) {
+        alert("로그인이 필요한 기능입니다^^");
+      } else {
+        item.favor = !item.favor;
+        const data = {
+          userId: this.$store.state.userInfo.userId,
+          housedealId: item.data.no,
+        };
 
-      const headers = {
-        "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
-      };
-      console.log(this.$store.state.userInfo.userToken);
-      axios.post("http://localhost/favorite/insertFav", data, {
-        headers: headers,
-      });
-      // axios
-      //   .post("http://localhost/favorite/insertFav", {
-      //     data: {
-      //       userId: this.$store.state.userInfo.userId,
-      //       housedealId: item.data.no,
-      //     },
-      //     headers: {
-      //       "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
-      //     },
-      //   })
-      //   .then((result) => {
-      //     console.log(result);
-      //   });
+        const headers = {
+          "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
+        };
+        console.log(this.$store.state.userInfo.userToken);
+        axios.post("http://localhost/favorite/insertFav", data, {
+          headers: headers,
+        });
+      }
     },
     reserve() {
       this.loading = true;

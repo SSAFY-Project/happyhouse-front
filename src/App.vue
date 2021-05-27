@@ -45,7 +45,7 @@
             <v-icon>mdi-heart</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>관심 지역</v-list-item-title>
+            <v-list-item-title>관심 매물</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item @click="checkUserInfo">

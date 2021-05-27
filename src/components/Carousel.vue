@@ -5,9 +5,8 @@
         <v-img :src="news.image" height="100%" tile="tile">
           <v-row class="fill-height" align="center" justify="center">
             <div
-              class="display-3"
               @click="gotoNews(news.link)"
-              style="padding-left: 50px; padding-right: 50px"
+              style="padding-left: 50px; padding-right: 50px; font-size: 50px"
             >
               {{ news.title }}
             </div>
@@ -37,3 +36,13 @@ export default {
   },
 };
 </script>
+<style>
+@font-face {
+  font-family: BMJUA;
+  src: url("../font/BMJUA_ttf.ttf");
+}
+
+body > * {
+  font-family: BMJUA !important;
+}
+</style>

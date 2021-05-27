@@ -1,71 +1,73 @@
 <template>
-  <v-form class="mt-15">
-    <v-container>
-      <v-card>
-        <v-card-title>회원 수정</v-card-title>
-        <v-card-text>
-          <v-row class="mb-3">
-            <v-col cols="6" md="8">
-              <p>{{ userId }}</p>
-            </v-col>
-            <v-col cols="6" md="8">
-              <v-text-field
-                v-model="userPwd"
-                :rules="pwRules"
-                label="비밀번호"
-                input="password"
-                required="required"
-                ref="userPwd"
-              />
-            </v-col>
+  <v-main>
+    <v-form class="mt-15">
+      <v-container>
+        <v-card>
+          <v-card-title>회원({{ userId }}) 정보 수정</v-card-title>
+          <v-card-text>
+            <v-row class="mb-3">
+              <!-- <v-col cols="6" md="8">
+                <p>UserId : {{ userId }}</p>
+              </v-col> -->
+              <v-col cols="6" md="8">
+                <v-text-field
+                  v-model="userPwd"
+                  :rules="pwRules"
+                  label="변경할 비밀번호"
+                  input="password"
+                  required="required"
+                  ref="userPwd"
+                />
+              </v-col>
 
-            <v-col cols="6" md="8">
-              <v-text-field
-                v-model="userName"
-                :rules="nameRules"
-                :counter="10"
-                label="이름"
-                required="required"
-                ref="userName"
-              />
-            </v-col>
+              <v-col cols="6" md="8">
+                <v-text-field
+                  v-model="userName"
+                  :rules="nameRules"
+                  :counter="10"
+                  label="이름"
+                  required="required"
+                  ref="userName"
+                />
+              </v-col>
 
-            <v-col cols="6" md="8">
-              <v-text-field
-                v-model="userAddr"
-                label="주소"
-                required="required"
-                ref="userAddr"
-              />
-            </v-col>
+              <v-col cols="6" md="8">
+                <v-text-field
+                  v-model="userAddr"
+                  label="주소"
+                  required="required"
+                  ref="userAddr"
+                />
+              </v-col>
 
-            <v-col cols="6" md="8">
-              <v-text-field
-                v-model="userTel"
-                label="전화번호"
-                required="required"
-                ref="userTel"
-              />
-            </v-col>
+              <v-col cols="6" md="8">
+                <v-text-field
+                  v-model="userTel"
+                  label="전화번호"
+                  required="required"
+                  ref="userTel"
+                />
+              </v-col>
 
-            <v-col cols="6" md="8">
-              <v-text-field
-                v-model="userEmail"
-                :rules="emailRules"
-                label="이메일"
-                required="required"
-                ref="userEmail"
-              />
-            </v-col>
-          </v-row>
-          <v-btn class="mr-4" color="primary" v-on:click="submit"
-            >정보 수정</v-btn
-          >
-          <v-btn v-on:click="clear">초기화</v-btn>
-        </v-card-text>
-      </v-card>
-    </v-container>
-  </v-form>
+              <v-col cols="6" md="8">
+                <v-text-field
+                  v-model="userEmail"
+                  :rules="emailRules"
+                  label="이메일"
+                  required="required"
+                  ref="userEmail"
+                />
+              </v-col>
+            </v-row>
+            <v-btn class="mr-4" color="primary" v-on:click="submit"
+              >정보 수정</v-btn
+            >
+            <v-btn v-on:click="clear">초기화</v-btn>
+          </v-card-text>
+        </v-card>
+      </v-container>
+    </v-form>
+  </v-main>
 </template>
 
 <script>
@@ -108,6 +110,7 @@ export default {
   },
   mounted() {
     if (this.$store.state.userInfo == null) {
+      alert("로그인이 필요한 기능입니다.")
       router.push("/signin");
     } else {
       this.userId = this.$store.state.userInfo.userId;
@@ -138,14 +141,18 @@ export default {
       const headers = {
         "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
       };
-      
-      axios.put("http://localhost/user/modify", data, {
-        headers: headers,
-      }).then((res) => {
-        this.$router.push("/");
-      }).catch((err) => {
+
+      axios
+        .put("http://localhost/user/modify", data, {
+          headers: headers,
+        })
+        .then((res) => {
+          alert("정보 수정 완료\n다시 로그인해주세요");
+          window.location.href = "/";
+        })
+        .catch((err) => {
           alert(err);
-      })
+        });
     },
     clear: function () {
       this.userName = "";
