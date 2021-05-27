@@ -33,13 +33,19 @@ const actions = {
     });
   },
   deleteuser({ commit }, userid) {
-    const headers = {
-      "X-AUTH-TOKEN": store.state.userInfo.userToken,
-    };
     console.log(store.state.userInfo.userToken);
-    axios
-      .delete("http://localhost/admin/deleteUser?userId=" + userid.userid, headers)
-      .then((data) => {});
+    console.log(userid.userid);
+    axios.delete("http://localhost/admin/deleteUser?userId=" + userid.userid, {
+      headers: {
+        "X-AUTH-TOKEN": store.state.userInfo.userToken,
+      },
+      data: {
+        userid: userid.userid,
+      },
+    });
+    // axios
+    //   .delete("http://localhost/admin/deleteUser?userId=" + userid.userid, headers)
+    //   .then((data) => {});
   },
 };
 export default {
