@@ -17,9 +17,6 @@
     <router-link to="/signin">
       <v-btn v-if="this.$store.state.userInfo === null">Sign In</v-btn>
     </router-link>
-    <router-link to="/mypage">
-      <v-btn v-if="this.$store.state.userInfo !== null">My Page</v-btn>
-    </router-link>
     <v-btn v-if="this.$store.state.userInfo !== null" v-on:click="out"
       >Sign Out</v-btn
     >
