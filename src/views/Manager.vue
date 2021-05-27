@@ -1,12 +1,7 @@
 <template>
   <v-main>
     <v-container>
-      <v-data-table
-        :headers="headers"
-        :items="allUser"
-        sort-by="calories"
-        class="elevation-1"
-      >
+      <v-data-table :headers="headers" :items="allUser" sort-by="calories" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>회원정보 관리</v-toolbar-title>
@@ -30,7 +25,7 @@
           </v-toolbar>
         </template>
         <template v-slot:item.actions="{ item }">
-          <v-icon class="mr-3" @click="deleteItem(item)"> mdi-message-outline </v-icon>
+          <v-icon class="mr-3" @click="message(item)"> mdi-message-outline </v-icon>
           <v-icon class="mr-3" @click="editItem(item)"> mdi-clipboard-edit-outline </v-icon>
           <v-icon class="mr-3" @click="deleteItem(item)"> mdi-delete-off-outline </v-icon>
         </template>
@@ -73,7 +68,8 @@ export default {
   methods: {
     initialize() {
       //this.allUser = this.$store.getters.allUser();
-      this.allUser = this.$store.state.allUser;
+      this.$store.dispatch("managermodule/getusers");
+      this.allUser = this.$store.userlist;
     },
 
     deleteItem(item) {
@@ -89,7 +85,7 @@ export default {
       this.dialogDelete = false;
       this.$nextTick(() => {
         //this.allUser = this.$store.getters.allUser();
-        this.allUser = this.$store.state.allUser;
+        this.allUser = this.$store.state.userlist;
       });
     },
   },
