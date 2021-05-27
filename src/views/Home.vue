@@ -31,9 +31,41 @@
         </div>
       </div>
 
-      <div class="section">
-        <h1>지도 화면단</h1>
-      </div>
+      <v-main class="section">
+        <v-row style="height: 100vh">
+          <v-col md="6">
+
+            <div class="wrap">
+              <strong>해피하우스는</strong>
+              <br>
+              지역별 검색 가능~
+              <br>
+              <button class="button">Submit</button>
+            </div>
+          </v-col>
+          <v-col md="6" style="background-color: yellow">
+            오른쪽
+            <v-row>
+              <v-col md="1"></v-col>
+              <v-col md="5">
+                <ul>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                </ul>
+              </v-col>
+              <v-col md="1"></v-col>
+              <v-col md="5">
+                <ul>
+                  <li>2</li>
+                  <li>2</li>
+                  <li>2</li>
+                </ul>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-main>
 
       <div class="section">
         <h1>검색 화면단</h1>
@@ -69,7 +101,7 @@ export default {
         menu: "#menu",
         navigation: true,
         anchors: ["page1", "page2", "page3", "page4", "page5"],
-        sectionsColor: ["#41b883", "#ff5f45", "#0798ec", "#fec401", "#41b883"],
+        sectionsColor: ["#41b883", "#ffffff", "#0798ec", "#fec401", "#41b883"],
       },
     };
   },
@@ -81,5 +113,37 @@ export default {
   background-image: url("../assets/HomeScreen.jpg");
   background-position: center;
   background-size: cover;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 </style>
