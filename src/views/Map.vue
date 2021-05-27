@@ -23,7 +23,7 @@
                   <v-col md="8">
                     <v-list-item-title class="mb-2"
                       >{{ item.data.aptName }}
-                      <v-btn icon @click="item.favor = !item.favor">
+                      <v-btn icon @click="add_favorite(item)">
                         <v-icon v-if="!item.favor">mdi-heart-outline</v-icon>
                         <v-icon v-if="item.favor" style="color: red">mdi-heart</v-icon>
                       </v-btn>
@@ -344,6 +344,34 @@ export default {
       );
 
       return markerImage;
+    },
+    add_favorite(item) {
+      item.favor = !item.favor;
+      const data = {
+        userId: this.$store.state.userInfo.userId,
+        housedealId: item.data.no,
+      };
+
+      const headers = {
+        "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
+      };
+      console.log(this.$store.state.userInfo.userToken);
+      axios.post("http://localhost/favorite/insertFav", data, {
+        headers: headers,
+      });
+      // axios
+      //   .post("http://localhost/favorite/insertFav", {
+      //     data: {
+      //       userId: this.$store.state.userInfo.userId,
+      //       housedealId: item.data.no,
+      //     },
+      //     headers: {
+      //       "X-AUTH-TOKEN": this.$store.state.userInfo.userToken,
+      //     },
+      //   })
+      //   .then((result) => {
+      //     console.log(result);
+      //   });
     },
     reserve() {
       this.loading = true;

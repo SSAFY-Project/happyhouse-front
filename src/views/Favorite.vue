@@ -1,14 +1,6 @@
 <template>
   <div>
     <v-main class="searchBar">
-      <v-container>
-        <v-container class="btnAry" align-center>
-          <button @click="noShowDetail" class="btn">통합검색</button>
-          <button @click="showDetail" class="btn">상세검색 ></button>
-          <router-link to="/map">
-            <button class="btn">지도검색</button>
-          </router-link>
-        </v-container>
         <v-container style="background-color: white" v-if="detailOption">
           <v-row>
             <!--필터 검색-->

@@ -90,6 +90,7 @@ export default new Vuex.Store({
             // 성공했으므로 토큰 받음
             // let token = res.data.token;
             let userInfo = {
+              userId: res.data.user.userId,
               userToken: res.data.token,
               userEmail: res.data.user.userEmail,
               userName: res.data.user.userNickName,
