@@ -226,7 +226,7 @@ export default {
       detailListTitle: ["필터", "가격", "옵션", "정렬"],
       searchBy: "아파트",
       sortBy: "가격",
-      price: [0, 9999],
+      price: [0, 999999],
       value: 5,
       interests: [],
     };

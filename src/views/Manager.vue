@@ -79,8 +79,6 @@ export default {
   methods: {
     initialize() {
       this.$store.dispatch("managermodule/getusers");
-      console.log("asdasdasd");
-      console.log(this.$store.state.managermodule.userlist);
       this.allUser = this.$store.state.managermodule.userlist;
     },
 
