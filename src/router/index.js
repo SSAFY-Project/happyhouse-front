@@ -9,7 +9,7 @@ import Manager from "../views/Manager.vue";
 import Favorite from "../views/Favorite.vue";
 import SignIn from "../components/SignIn.vue";
 import SignUp from "../components/SignUp.vue";
-
+import UserEdit from "../components/UserEdit.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -57,6 +57,11 @@ const routes = [
     path: "/favorite",
     name: "Favorite",
     component: Favorite,
+  },
+  {
+    path: "/useredit",
+    name: "UserEdit",
+    component: UserEdit,
   },
 ];
 
