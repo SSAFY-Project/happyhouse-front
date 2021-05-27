@@ -91,10 +91,12 @@ export default new Vuex.Store({
             // let token = res.data.token;
             let userInfo = {
               userId: res.data.user.userId,
+              userAddr: res.data.user.userAddr,
               userToken: res.data.token,
               userEmail: res.data.user.userEmail,
               userName: res.data.user.userNickName,
               userRole: res.data.user.userRole,
+              userTel: res.data.user.userTel,
               userFavorite: res.data.favorite,
             };
             // // 토큰 로컬스토리지에 저장해야함(새로고침 팅김 방지)

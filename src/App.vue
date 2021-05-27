@@ -85,7 +85,7 @@ export default {
         window.location.href = "/signin";
       }
       else{
-        this.$router.push('/favorite');
+        this.$router.push('/useredit');
       }
     }
   },
