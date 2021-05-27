@@ -128,7 +128,7 @@ export default {
           userAddr: this.userAddr,
           userNickName: this.userName,
           userTel: this.userTel,
-          userRole: "user",
+          userRole: "ROLE_USER",
         })
         .then((res) => {
           alert("회원가입 완료!");
