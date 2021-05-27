@@ -5,9 +5,11 @@ import Map from "../views/Map.vue";
 import Search from "../views/Search.vue";
 import News from "../views/News.vue";
 import More from "../views/More.vue";
+import Manager from "../views/Manager.vue";
+import Favorite from "../views/Favorite.vue";
 import SignIn from "../components/SignIn.vue";
 import SignUp from "../components/SignUp.vue";
-import Manager from "../views/Manager.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -50,6 +52,11 @@ const routes = [
     path: "/manager",
     name: "Manager",
     component: Manager,
+  },
+  {
+    path: "/favorite",
+    name: "Favorite",
+    component: Favorite,
   },
 ];
 

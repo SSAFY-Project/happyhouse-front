@@ -15,31 +15,31 @@ export default new Vuex.Store({
         id: "woongseob",
         name: "웅섭",
         date: "21-05-01",
-        role: "관리자"
+        role: "관리자",
       },
       {
         id: "donggil",
         name: "동길",
         date: "21-05-02",
-        role: "관리자"
+        role: "관리자",
       },
       {
         id: "soojin",
         name: "수진",
         date: "21-05-03",
-        role: "관리자"
+        role: "관리자",
       },
       {
         id: "seongmin",
         name: "성민",
         date: "21-05-04",
-        role: "관리자"
+        role: "관리자",
       },
       {
         id: "chanho",
         name: "찬호",
         date: "21-05-05",
-        role: "사용자"
+        role: "사용자",
       },
     ],
   },
@@ -82,15 +82,16 @@ export default new Vuex.Store({
           .post("http://localhost/user/login", loginObj)
           .then((res) => {
             // 성공했으므로 토큰 받음
-            let token = res.data.token;
+            // let token = res.data.token;
             let userInfo = {
+              userToken: res.data.token,
               userEmail: res.data.user.userEmail,
               userName: res.data.user.userNickName,
               userFavorite: res.data.favorite,
             };
 
             // // 토큰 로컬스토리지에 저장해야함(새로고침 팅김 방지)
-            localStorage.setItem("access_token", token);
+            // localStorage.setItem("access_token", token);
 
             // console.log(userInfo);
             // alert("로그인 성공");
