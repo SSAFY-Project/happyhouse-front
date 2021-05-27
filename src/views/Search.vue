@@ -47,7 +47,7 @@
                   v-model="price"
                   type="is-success"
                   :min="0"
-                  :max="9999"
+                  :max="999999"
                   :step="100"
                 />
               </b-field>
@@ -147,34 +147,40 @@
             # {{ sortBy }}
           </v-chip>
         </v-container>
-
-        <v-container class="searchInput" align-center @keydown.enter="search">
-          <v-autocomplete auto-select-first filled solo />
-        </v-container>
+        <v-text-field
+          class="pt-2"
+          label="검색어"
+          outlined
+          @keypress.enter="search"
+          v-model="searchKeyword"
+        ></v-text-field>
+        <!-- <v-container class="searchInput" align-center @keydown.enter="search">
+          <v-autocomplete auto-select-first filled solo v-model="searchKeyword"/>
+        </v-container> -->
         <v-container class="slotMachine">
-          <v-row>
+          <v-row v-model="data">
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>총 매물 수</dt>
-                <number md="4" :from="0" :to="999" :duration="3" />
+                <number md="4" :from="0" :to="data.length" :duration="3" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>매매 수</dt>
-                <number md="4" :from="0" :to="222" :duration="1.2" />
+                <number md="4" :from="0" :to="data.length * 2 / 9" :duration="1.2" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>전세 수</dt>
-                <number md="4" :from="0" :to="444" :duration="2" />
+                <number md="4" :from="0" :to="data.length * 3 / 9" :duration="2" />
               </dl>
             </v-col>
             <v-col>
               <dl class="slotItem" md="3">
                 <dt>월세 수</dt>
-                <number md="4" :from="0" :to="333" :duration="1.7" />
+                <number md="4" :from="0" :to="data.length * 4 / 9" :duration="1.7" />
               </dl>
             </v-col>
           </v-row>
@@ -184,16 +190,16 @@
     <v-main>
       <v-container class="cardList">
         <!---->
-        <v-row>
-          <v-col md="4" v-for="i of 9" :key="i" v-model="data">
+        <v-row v-model="data">
+          <v-col md="4" v-for="item in data" v-bind:key="item.id">
             <figure class="card">
-              <!-- <img :src=data[] /> -->
+              <img :src="item.src" />
               <figcaption>
                 <h2>
-                  {{ data[i].name }}
+                  {{ item.name }}
                   <hr />
                 </h2>
-                <p>{{ data[i].price }}</p>
+                <p>{{ item.price }}</p>
                 <div class="icons">
                   <i class="ion-android-pin"></i>
                   <i class="ion-heart" style="color: red"></i>
@@ -209,36 +215,26 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import axios from "axios";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
       detailOption: false,
       searchKeyword: "",
-      data: [
-        
-      ],
+      data: [],
       detailListTitle: ["필터", "가격", "옵션", "정렬"],
       searchBy: "아파트",
       sortBy: "가격",
       price: [0, 9999],
       value: 5,
       interests: [],
-      
     };
   },
   beforeCreate() {
-    this.$store.dispatch("housemodule/getHouseDeals").then(() => {
-      const list = this.$store.getters["housemodule/getHouseDeal"];
-      
-      for(const elem of list) {
-        this.data.push({
-          name : elem.aptName,
-          price: elem.dealAmount + "만",
-          src: "../assets/" + elem.aptName + ".jpg"
-        })
-      }
-    })
+    axios.get("http://localhost/search/all").then((data) => {
+      this.dataBind(data.data.totalList);
+    });
   },
   methods: {
     showDetail() {
@@ -260,9 +256,78 @@ export default {
     inquirySort() {
       this.data.price.sort();
     },
+    searchByAptName() {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(
+            "http://localhost/search/dong?searchString=" + this.searchKeyword
+          )
+          .then((data) => {
+            resolve(data);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    searchByDongName() {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(
+            "http://localhost/search/aptname?searchString=" + this.searchKeyword
+          )
+          .then((data) => {
+            resolve(data);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    dataBind(list) {
+      let i = 0;
+      this.data = [];
+      if (list.length != 0) {
+        for (const elem of list) {
+          try {
+            require("../assets/aptImgs/" + elem.aptName + ".jpg");
+            this.data.push({
+              id: i,
+              name: elem.aptName,
+              price: elem.dealAmount + "만",
+              src: require("../assets/aptImgs/" + elem.aptName + ".jpg"),
+            });
+          } catch {
+            this.data.push({
+              id: i,
+              name: elem.aptName,
+              price: elem.dealAmount + "만",
+              src: require("../assets/aptImgs/undefined.jpg"),
+            });
+          }
+          i++;
+        }
+      }
+    },
     search() {
-      console.log("search");
-    }
+      this.searchByAptName()
+        .then((result) => {
+          if (result.data.dongList.length === 0) {
+            this.searchByDongName()
+              .then((result) => {
+                this.dataBind(result.data.aptList);
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          } else {
+            this.dataBind(result.data.dongList);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
   },
 };
 </script>

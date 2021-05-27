@@ -1,7 +1,12 @@
 <template>
   <v-main>
     <v-container>
-      <v-data-table :headers="headers" :items="allUser" sort-by="calories" class="elevation-1">
+      <v-data-table
+        :headers="headers"
+        :items="allUser"
+        sort-by="calories"
+        class="elevation-1"
+      >
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>회원정보 관리</v-toolbar-title>
@@ -25,9 +30,15 @@
           </v-toolbar>
         </template>
         <template v-slot:item.actions="{ item }">
-          <v-icon class="mr-3" @click="message(item)"> mdi-message-outline </v-icon>
-          <v-icon class="mr-3" @click="editItem(item)"> mdi-clipboard-edit-outline </v-icon>
-          <v-icon class="mr-3" @click="deleteItem(item)"> mdi-delete-off-outline </v-icon>
+          <v-icon class="mr-3" @click="message(item)">
+            mdi-message-outline
+          </v-icon>
+          <v-icon class="mr-3" @click="editItem(item)">
+            mdi-clipboard-edit-outline
+          </v-icon>
+          <v-icon class="mr-3" @click="deleteItem(item)">
+            mdi-delete-off-outline
+          </v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -84,7 +95,9 @@ export default {
     deleteItemConfirm() {
       this.allUser.splice(this.editedIndex, 1);
       console.log(this.editedId);
-      this.$store.dispatch("managermodule/deleteuser", { userid: this.editedId });
+      this.$store.dispatch("managermodule/deleteuser", {
+        userid: this.editedId,
+      });
       this.closeDelete();
     },
 
