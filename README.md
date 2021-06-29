@@ -7,6 +7,7 @@
 ## 화면
 
 1. 메인 페이지
+
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/55429912/123838288-cfab9a00-d946-11eb-8f5b-3f5c1adec7fb.gif)
 
 2. 로그인/ 회원가입
@@ -14,6 +15,8 @@
 3. 지도검색
 
 4. 뉴스검색
+
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/55429912/123839299-ee5e6080-d947-11eb-8f36-293c737f8fe5.gif)
 
 5. 마이페이지
 
