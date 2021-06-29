@@ -1,24 +1,28 @@
 # happyhouse
 
-## Project setup
-```
-npm install
-```
+## 프로젝트
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+개인의 취향에 맞춘 **부동산 매물 검색** 프로젝트  
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 화면
 
-### Lints and fixes files
-```
-npm run lint
-```
+1. 메인 페이지
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/55429912/123838288-cfab9a00-d946-11eb-8f5b-3f5c1adec7fb.gif)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2. 로그인/ 회원가입
+
+3. 지도검색
+
+4. 뉴스검색
+
+5. 마이페이지
+
+
+## 주요기능
+1. 회원관리
+2. 지도검색
+3. 뉴스출력 
+
+## 기술 스택
+
+Vue, Vuex, Axios, Vue Router
