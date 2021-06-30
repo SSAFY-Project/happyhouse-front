@@ -12,7 +12,11 @@
 
 2. 로그인/ 회원가입
 
+![로그인](https://user-images.githubusercontent.com/55429912/124006304-094ad680-da15-11eb-9624-2ae413177ae8.gif)
+
 3. 지도검색
+
+![맵](https://user-images.githubusercontent.com/55429912/124004986-86754c00-da13-11eb-8513-3f67772989f6.gif)
 
 4. 뉴스검색
 
